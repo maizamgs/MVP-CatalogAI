@@ -124,6 +124,46 @@ Tabela de apoio com a tradução das categorias de produto para o inglês.
 
 ---
 
+## 🧠 Modelagem 
+
+                    ┌────────────────────────────┐
+                    │  olist_products_dataset    │
+                    └────────────────────────────┘
+                       │
+                       │ product_category_name
+                       ▼
+        ┌────────────────────────────────────┐
+        │ product_category_name_translation  │
+        └────────────────────────────────────┘
+
+                    ▼
+     ┌──────────────────────────────────────┐
+     │   Pré-processamento e Engenharia     │
+     │      de Features (nome, peso, etc)   │
+     └──────────────────────────────────────┘
+
+                    ▼
+     ┌──────────────────────────────────────┐
+     │  Modelo de Classificação (ML/NLP)    │
+     │ Entradas: nome, descrição, medidas   │
+     │ Saída: categoria sugerida            │
+     └──────────────────────────────────────┘
+
+                    ▼
+     ┌──────────────────────────────────────┐
+     │  Resultado:                          │
+     │ - Categoria recomendada              │
+     │ - Nível de confiança                 │
+     │ - Tradução da categoria (opcional)   │
+     └──────────────────────────────────────┘
 
 
+
+### 🔍 Explicação Rápida:
+- O projeto começa com a leitura do arquivo `olist_products_dataset.csv`.
+- A categoria original é traduzida via `product_category_name_translation.csv`.
+- Após o pré-processamento, os dados alimentam um modelo de machine learning para sugerir automaticamente a categoria.
+- O resultado inclui a categoria prevista, o nível de confiança e, se necessário, a versão traduzida da categoria.
+
+---
 
