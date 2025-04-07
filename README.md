@@ -44,8 +44,7 @@ O objetivo principal é construir uma **ferramenta de apoio para analistas de ne
 
 Utiliza dados públicos disponíveis no Kaggle:
 
-📁 [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce):
-
+📁  [Amazon Sales Dataset (Kaggle)](https://www.kaggle.com/code/mehakiftikhar/amazon-sales-dataset-eda/input)
 ---
 
 ## ✅ Funcionalidades do MVP
@@ -73,97 +72,34 @@ jornada. 💙
 ---
 
 
-## 📊 Catálogo de Dados
+## 📚 Catálogo de Dados
 
-Este projeto utiliza dois arquivos principais do [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce):
-
----
-
-### 🗂️ 1. `olist_products_dataset.csv`
-
-Contém informações detalhadas sobre os produtos vendidos na plataforma.
-
-| Coluna                     | Tipo     | Descrição                                                                 |
-|----------------------------|----------|---------------------------------------------------------------------------|
-| `product_id`               | string   | Identificador único do produto                                            |
-| `product_category_name`    | string   | Nome da categoria original (em português)                                 |
-| `product_name_lenght`      | inteiro  | Quantidade de caracteres no nome do produto                               |
-| `product_description_lenght` | inteiro | Quantidade de caracteres na descrição do produto                          |
-| `product_photos_qty`       | inteiro  | Quantidade de fotos disponíveis                                           |
-| `product_weight_g`         | inteiro  | Peso do produto em gramas                                                 |
-| `product_length_cm`        | inteiro  | Comprimento do produto em centímetros                                     |
-| `product_height_cm`        | inteiro  | Altura do produto em centímetros                                          |
-| `product_width_cm`         | inteiro  | Largura do produto em centímetros                                         |
-
-🔎 **Observações:**
-- A coluna `product_category_name` será utilizada como **rótulo (target)** para a classificação.
-- As demais colunas podem ser utilizadas como **features complementares**.
-- Campos com valores nulos precisam ser tratados no pré-processamento.
+### 🧬 Fonte dos Dados
+- **Dataset:** [Amazon Sales Dataset - EDA](https://www.kaggle.com/code/mehakiftikhar/amazon-sales-dataset-eda/input)
+- **Origem:** Kaggle - Dados coletados de produtos disponíveis na Amazon.
+- **Linhagem dos Dados:** Os dados foram baixados diretamente da plataforma Kaggle. O dataset foi compilado a partir de informações públicas de listagens de produtos na Amazon. A coleta provavelmente foi realizada via scraping ou API pública da plataforma (detalhes não especificados pela autora original do dataset).
+- **Objetivo do Uso:** Treinar um modelo de classificação automática de produtos com base em nome e descrição textual.
 
 ---
 
-### 📘 2. `product_category_name_translation.csv`
+### 📝 Descrição das Variáveis
 
-Tabela de apoio com a tradução das categorias de produto para o inglês.
-
-| Coluna                       | Tipo     | Descrição                                           |
-|------------------------------|----------|-----------------------------------------------------|
-| `product_category_name`      | string   | Nome da categoria em português                      |
-| `product_category_name_english` | string | Nome da categoria traduzido para o inglês           |
-
-🔗 Pode ser integrado ao `olist_products_dataset.csv` via `product_category_name`.
-
----
-
-## 🧩 Como esses dados serão usados no MVP?
-
-- A partir do `olist_products_dataset.csv`, o MVP utilizará principalmente:
-  - `product_category_name` como **target**
-  - A estrutura do nome, descrição e atributos físicos como **features**
-- O objetivo é treinar um modelo que consiga prever a categoria de um produto com base nas informações disponíveis.
+| Variável               | Tipo          | Descrição                                                                 | Domínio/Valores Esperados                              |
+|------------------------|---------------|---------------------------------------------------------------------------|--------------------------------------------------------|
+| `product_name`         | Categórica    | Nome do produto listado na Amazon                                         | Ex: "Wireless Mouse", "Yoga Mat", "Laptop Stand"       |
+| `product_category`     | Categórica    | Categoria atribuída ao produto                                            | Ex: "Electronics", "Home", "Beauty", "Fashion"         |
+| `product_description`  | Texto Livre   | Descrição textual do produto                                              | Textos curtos ou médios, com detalhes do produto       |
+| `price`                | Numérica (float) | Preço do produto em dólares americanos (USD)                            | Mín: 0.01 / Máx: ~10.000 (valores extremos a tratar)   |
+| `rating`               | Numérica (float) | Avaliação média dos usuários, de 1 a 5                                   | Mín: 1.0 / Máx: 5.0                                     |
+| `number_of_reviews`    | Numérica (int) | Quantidade total de avaliações recebidas                                 | Mín: 0 / Máx: milhares (ex: 15.000+)                    |
+| `brand`                | Categórica    | Nome da marca ou fabricante                                               | Ex: "Samsung", "Apple", "Nike", "Unknown"              |
+| `product_url`          | Texto Livre   | URL para o produto na Amazon                                              | Ex: `https://amazon.com/....`                          |
+| `image_url`            | Texto Livre   | URL da imagem do produto                                                  | Ex: `https://images.amazon.com/....`                   |
 
 ---
 
-## 🧠 Modelagem 
-
-                    ┌────────────────────────────┐
-                    │  olist_products_dataset    │
-                    └────────────────────────────┘
-                       │
-                       │ product_category_name
-                       ▼
-        ┌────────────────────────────────────┐
-        │ product_category_name_translation  │
-        └────────────────────────────────────┘
-
-                    ▼
-     ┌──────────────────────────────────────┐
-     │   Pré-processamento e Engenharia     │
-     │      de Features (nome, peso, etc)   │
-     └──────────────────────────────────────┘
-
-                    ▼
-     ┌──────────────────────────────────────┐
-     │  Modelo de Classificação (ML/NLP)    │
-     │ Entradas: nome, descrição, medidas   │
-     │ Saída: categoria sugerida            │
-     └──────────────────────────────────────┘
-
-                    ▼
-     ┌──────────────────────────────────────┐
-     │  Resultado:                          │
-     │ - Categoria recomendada              │
-     │ - Nível de confiança                 │
-     │ - Tradução da categoria (opcional)   │
-     └──────────────────────────────────────┘
-
-
-
-### 🔍 Explicação Rápida:
-- O projeto começa com a leitura do arquivo `olist_products_dataset.csv`.
-- A categoria original é traduzida via `product_category_name_translation.csv`.
-- Após o pré-processamento, os dados alimentam um modelo de machine learning para sugerir automaticamente a categoria.
-- O resultado inclui a categoria prevista e o nível de confiança 
-
----
+### 📌 Observações
+- As colunas `product_name` e `product_description` serão as principais **entradas textuais** para o modelo de classificação.
+- Colunas como `price`, `rating` e `number_of_reviews` podem ser usadas como **variáveis auxiliares ou filtros** na análise exploratória ou no refinamento da classificação.
+- Alguns valores podem conter **nulos**, marcas desconhecidas, ou outliers (ex: preços muito baixos ou muito altos) que exigirão tratamento na etapa de pré-processamento.
 
