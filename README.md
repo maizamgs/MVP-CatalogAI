@@ -44,7 +44,7 @@ O objetivo principal é construir uma **ferramenta de apoio para analistas de ne
 
 Utiliza dados públicos disponíveis no Kaggle:
 
-📁 [E-Commerce Data (SHEIN)](https://www.kaggle.com/datasets/oleksiimartusiuk/e-commerce-data-shein)
+📁 [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce):
 
 ---
 
@@ -67,7 +67,63 @@ Utiliza dados públicos disponíveis no Kaggle:
 ## 💬 Sobre mim
 
 Sou Mãe do Conrado, carioca, bibliotecária pela UFRJ, product manager atuando no Ifood 🍔, com 9 anos de experiência. Apaixonada por entender problemas reais, construir soluções com propósito e, agora, aplicando esse olhar na **ciência de dados**.  
-Com formação em **biblioteconomia** e uma bagagem prática em produto, sigo acreditando na interdiciplinaridade como chave para ser um difernecial no mercado, com foco em aprendizado constante — este projeto é parte dessa jornada. 💙
+Com formação em **biblioteconomia** e uma bagagem prática em produto, sigo acreditando na interdiciplinaridade como chave para ser um difernecial no mercado, com foco em aprendizado constante — este projeto é parte dessa 
+jornada. 💙
 
 ---
+
+
+## 📊 Catálogo de Dados
+
+Este projeto utiliza dois arquivos principais do [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce):
+
+---
+
+### 🗂️ 1. `olist_products_dataset.csv`
+
+Contém informações detalhadas sobre os produtos vendidos na plataforma.
+
+| Coluna                     | Tipo     | Descrição                                                                 |
+|----------------------------|----------|---------------------------------------------------------------------------|
+| `product_id`               | string   | Identificador único do produto                                            |
+| `product_category_name`    | string   | Nome da categoria original (em português)                                 |
+| `product_name_lenght`      | inteiro  | Quantidade de caracteres no nome do produto                               |
+| `product_description_lenght` | inteiro | Quantidade de caracteres na descrição do produto                          |
+| `product_photos_qty`       | inteiro  | Quantidade de fotos disponíveis                                           |
+| `product_weight_g`         | inteiro  | Peso do produto em gramas                                                 |
+| `product_length_cm`        | inteiro  | Comprimento do produto em centímetros                                     |
+| `product_height_cm`        | inteiro  | Altura do produto em centímetros                                          |
+| `product_width_cm`         | inteiro  | Largura do produto em centímetros                                         |
+
+🔎 **Observações:**
+- A coluna `product_category_name` será utilizada como **rótulo (target)** para a classificação.
+- As demais colunas podem ser utilizadas como **features complementares**.
+- Campos com valores nulos precisam ser tratados no pré-processamento.
+
+---
+
+### 📘 2. `product_category_name_translation.csv`
+
+Tabela de apoio com a tradução das categorias de produto para o inglês.
+
+| Coluna                       | Tipo     | Descrição                                           |
+|------------------------------|----------|-----------------------------------------------------|
+| `product_category_name`      | string   | Nome da categoria em português                      |
+| `product_category_name_english` | string | Nome da categoria traduzido para o inglês           |
+
+🔗 Pode ser integrado ao `olist_products_dataset.csv` via `product_category_name`.
+
+---
+
+## 🧩 Como esses dados serão usados no MVP?
+
+- A partir do `olist_products_dataset.csv`, o MVP utilizará principalmente:
+  - `product_category_name` como **target**
+  - A estrutura do nome, descrição e atributos físicos como **features**
+- O objetivo é treinar um modelo que consiga prever a categoria de um produto com base nas informações disponíveis.
+
+---
+
+
+
 
