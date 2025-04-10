@@ -44,7 +44,7 @@ O objetivo principal é construir uma **ferramenta de apoio para analistas de ne
 
 Utiliza dados públicos disponíveis no Kaggle:
 
-📁  [Amazon Sales Dataset (Kaggle)](https://www.kaggle.com/code/mehakiftikhar/amazon-sales-dataset-eda/input)
+📁 [E-Commerce Cosmetics Dataset](https://www.kaggle.com/datasets/devi5723/e-commerce-cosmetics-dataset/data)
 ---
 
 ## ✅ Funcionalidades do MVP
@@ -71,35 +71,132 @@ jornada. 💙
 
 ---
 
+## 📚 Catálogo de Dados - E-Commerce Cosmetics Dataset
 
-## 📚 Catálogo de Dados
-
-### 🧬 Fonte dos Dados
-- **Dataset:** [Amazon Sales Dataset - EDA](https://www.kaggle.com/code/mehakiftikhar/amazon-sales-dataset-eda/input)
-- **Origem:** Kaggle - Dados coletados de produtos disponíveis na Amazon.
-- **Linhagem dos Dados:** Os dados foram baixados diretamente da plataforma Kaggle. O dataset foi compilado a partir de informações públicas de listagens de produtos na Amazon. A coleta provavelmente foi realizada via scraping ou API pública da plataforma (detalhes não especificados pela autora original do dataset).
-- **Objetivo do Uso:** Treinar um modelo de classificação automática de produtos com base em nome e descrição textual.
+Este catálogo apresenta uma descrição detalhada do conjunto de dados utilizado no projeto, com informações sobre os campos disponíveis, seus tipos, domínios (valores esperados), e a linhagem dos dados. O objetivo é facilitar a compreensão da estrutura dos dados para futuras análises e modelagens.
 
 ---
 
-### 📝 Descrição das Variáveis
+### 🔗 Linhagem dos Dados
 
-| Variável               | Tipo          | Descrição                                                                 | Domínio/Valores Esperados                              |
-|------------------------|---------------|---------------------------------------------------------------------------|--------------------------------------------------------|
-| `product_name`         | Categórica    | Nome do produto listado na Amazon                                         | Ex: "Wireless Mouse", "Yoga Mat", "Laptop Stand"       |
-| `product_category`     | Categórica    | Categoria atribuída ao produto                                            | Ex: "Electronics", "Home", "Beauty", "Fashion"         |
-| `product_description`  | Texto Livre   | Descrição textual do produto                                              | Textos curtos ou médios, com detalhes do produto       |
-| `price`                | Numérica (float) | Preço do produto em dólares americanos (USD)                            | Mín: 0.01 / Máx: ~10.000 (valores extremos a tratar)   |
-| `rating`               | Numérica (float) | Avaliação média dos usuários, de 1 a 5                                   | Mín: 1.0 / Máx: 5.0                                     |
-| `number_of_reviews`    | Numérica (int) | Quantidade total de avaliações recebidas                                 | Mín: 0 / Máx: milhares (ex: 15.000+)                    |
-| `brand`                | Categórica    | Nome da marca ou fabricante                                               | Ex: "Samsung", "Apple", "Nike", "Unknown"              |
-| `product_url`          | Texto Livre   | URL para o produto na Amazon                                              | Ex: `https://amazon.com/....`                          |
-| `image_url`            | Texto Livre   | URL da imagem do produto                                                  | Ex: `https://images.amazon.com/....`                   |
+- **Fonte**: [E-Commerce Cosmetics Dataset - Kaggle](https://www.kaggle.com/datasets/devi5723/e-commerce-cosmetics-dataset/data)
+- **Formato Original**: CSV
+- **Origem dos Dados**: Scraping de sites de e-commerce (Ulta, Amazon, Flipkart, Sephora)
+- **Técnica de Coleta**: Web scraping (detalhes não fornecidos na fonte original)
+- **Transformações Realizadas**:
+  - Unificação de estruturas entre websites
+  - Padronização de campos (ex: preços em INR, normalização de categorias)
 
 ---
 
-### 📌 Observações
-- As colunas `product_name` e `product_description` serão as principais **entradas textuais** para o modelo de classificação.
-- Colunas como `price`, `rating` e `number_of_reviews` podem ser usadas como **variáveis auxiliares ou filtros** na análise exploratória ou no refinamento da classificação.
-- Alguns valores podem conter **nulos**, marcas desconhecidas, ou outliers (ex: preços muito baixos ou muito altos) que exigirão tratamento na etapa de pré-processamento.
+### 🧬 Dicionário de Dados
+
+| Coluna               | Tipo     | Descrição                                                        | Domínio / Exemplos                              |
+|----------------------|----------|-------------------------------------------------------------------|-------------------------------------------------|
+| `Product_name`       | String   | Nome do produto                                                   | Ex: `Lakme Absolute Blur Perfect Primer`        |
+| `Website`            | String   | Site de origem do produto                                         | `Ulta`, `Amazon`, `Flipkart`, `Sephora`         |
+| `Category`           | String   | Categoria geral do produto cosmético                              | `eyes`, `face`, `lips`, `body`, `skincare`, `hair` |
+| `Subcategory`        | String   | Subcategoria mais específica do produto                           | Ex: `Lipstick`, `Foundation`, `Concealer`       |
+| `href`               | String   | URL do produto no site original                                   | Link clicável                                   |
+| `Price`              | Float    | Preço do produto em INR                                           | Mín: ~50 — Máx: ~5000+                          |
+| `Brand`              | String   | Marca responsável pelo produto                                    | Ex: `Lakme`, `Maybelline`, `L'Oreal`, `Sugar`   |
+| `Ingredients`        | String   | Ingredientes do produto (texto livre)                             | Ex: `Aqua, Dimethicone, Titanium Dioxide...`    |
+| `Form`               | String   | Consistência ou forma física do produto                           | Ex: `Liquid`, `Cream`, `Gel`, `Powder`          |
+| `Type`               | String   | Informações adicionais do produto                                 | Ex: `Matte`, `Long Wear`, `Waterproof`          |
+| `Color`              | String   | Cor do produto (quando aplicável)                                 | Ex: `Cherry Red`, `Ivory`, `Nude`               |
+| `Quantity`           | Float    | Volume do produto em mililitros (ml)                              | Mín: ~5ml — Máx: ~1000ml                        |
+| `Rating`             | Float    | Avaliação média dos clientes (escala de 0 a 5)                    | Mín: 0.0 — Máx: 5.0                             |
+| `Number of ratings`  | Integer  | Número total de avaliações recebidas                              | Mín: 0 — Máx: 90.000+                           |
+
+---
+
+### 📈 Domínio dos Dados Numéricos
+
+| Campo               | Valor Mínimo | Valor Máximo | Observações                        |
+|--------------------|---------------|---------------|------------------------------------|
+| `Price`            | ~50           | ~5000         | Provavelmente valores em INR       |
+| `Quantity`         | ~5 ml         | ~1000 ml      | Pode conter ruído ou unidades faltantes |
+| `Rating`           | 0.0           | 5.0           | Escala padrão de avaliações        |
+| `Number of ratings`| 0             | 90.000+       | Quantidade total de avaliações     |
+
+---
+### 🏷️ Domínio dos Dados Categóricos
+
+#### `Website`
+Plataformas de e-commerce de onde os dados foram extraídos:
+- Ulta
+- Amazon
+- Flipkart
+- Sephora
+
+#### `Category`
+Categorias principais de produtos cosméticos:
+- Eyes (olhos)
+- Face (rosto)
+- Lips (lábios)
+- Body (corpo)
+- Skincare (cuidados com a pele)
+- Hair (cabelos)
+
+#### `Subcategory`
+Subcategorias específicas dentro das categorias principais:
+- Mascara
+- Eyeliner
+- Foundation
+- Lipstick
+- Moisturizer
+- Shampoo
+- Sunscreen
+- Blush
+- Concealer
+- Conditioner
+
+#### `Brand`
+Marcas populares dos produtos:
+- Maybelline
+- Lakme
+- L'Oréal
+- MAC
+- Sugar Cosmetics
+- Revlon
+- The Body Shop
+- Neutrogena
+- Biotique
+- WOW Skin Science
+
+#### `Form`
+Formato ou consistência dos produtos:
+- Liquid
+- Cream
+- Powder
+- Gel
+- Balm
+- Serum
+- Lotion
+- Stick
+
+#### `Type`
+Características adicionais do produto:
+- Matte
+- Glossy
+- Waterproof
+- Long Wear
+- Natural Finish
+- SPF Protection
+- Oil-Free
+- Fragrance-Free
+
+#### `Color`
+Cores informadas nos produtos:
+- Red
+- Nude Beige
+- Deep Brown
+- Coral Crush
+- Cherry Red
+- Classic Ivory
+- Natural Buff
+- Pink Blossom
+
+
+
 
