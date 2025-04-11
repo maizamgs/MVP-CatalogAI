@@ -197,6 +197,9 @@ Cores informadas nos produtos:
 - Natural Buff
 - Pink Blossom
 
+### 🗂️ Modelo de Dados - Esquema Estrela
+
+![Esquema Estrela do Dataset de E-commerce](https://github.com/maizamgs/MVP-CatalogAI/blob/66e6c2742fa8fe55c47e0e10fa10ba316897b607/esquema%20estrela.png?raw=true)
 
 
 
