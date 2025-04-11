@@ -61,6 +61,8 @@ Utiliza dados públicos disponíveis no Kaggle:
 - Python  
 - Databricks
 - PySpark
+- MLlib
+- Pandas
 
 ---
 
