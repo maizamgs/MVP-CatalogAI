@@ -212,3 +212,12 @@ Você pode acessar e executar o notebook completo diretamente no Databricks atra
 [🔗 Abrir notebook no Databricks](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1173022975515537/1628847209129796/6057031536656093/latest.html)
 
 
+## ✅ Conclusão
+
+Este projeto marcou meu primeiro contato prático com a área de Ciência de Dados. Ao longo do desenvolvimento do MVP, pude experimentar todo o ciclo de um projeto real — desde a carga e transformação dos dados até a análise de qualidade e criação de um modelo preditivo simples.
+
+Apesar dos desafios, consegui construir uma solução funcional que sugere a categoria de produtos de e-commerce com base em seu nome. Foi especialmente gratificante ver o modelo funcionando, mesmo que com limitações, e perceber como ferramentas como o Databricks e bibliotecas de machine learning em Python podem ser poderosas.
+
+Com este MVP, consegui aplicar conceitos que antes pareciam muito distantes da minha realidade. Para os próximos passos, pretendo me aprofundar em técnicas mais avançadas de modelagem, explorar o uso de embeddings e NLP para melhorar a performance, e aprender a construir pipelines mais robustos e automatizados.
+
+Esse projeto reforçou meu interesse pela área e me mostrou que, com prática e dedicação, é possível transformar dados em soluções reais.
