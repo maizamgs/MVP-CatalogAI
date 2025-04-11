@@ -60,6 +60,7 @@ Utiliza dados públicos disponíveis no Kaggle:
 
 - Python  
 - Databricks
+- PySpark
 
 ---
 
