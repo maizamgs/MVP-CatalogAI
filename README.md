@@ -203,4 +203,7 @@ Cores informadas nos produtos:
 ![Esquema Estrela do Dataset de E-commerce](https://github.com/maizamgs/MVP-CatalogAI/blob/66e6c2742fa8fe55c47e0e10fa10ba316897b607/esquema%20estrela.png?raw=true)
 
 
+###  Link do notebook no databricks 
+
+https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1173022975515537/1628847209129796/6057031536656093/latest.html
 
